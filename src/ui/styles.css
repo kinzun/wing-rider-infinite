@@ -686,3 +686,220 @@ button:disabled {
 #rush-vignette.overload {
   box-shadow: inset 0 0 115px 26px #24dcffb0;
 }
+
+.touch-drive {
+  display: none;
+}
+.touch {
+  overscroll-behavior: none;
+}
+.touch #view,
+.touch .touch-drive button,
+.touch .powerbar button,
+.touch .sixbar button {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.touch .top {
+  margin: max(5px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) 0
+    max(8px, env(safe-area-inset-left));
+  align-items: center;
+  gap: 6px;
+}
+.touch .top-controls {
+  max-width: none;
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+.touch button.small {
+  padding: 4px 8px;
+  font-size: 10px;
+}
+.touch .brand strong {
+  font-size: 15px;
+  letter-spacing: 0;
+}
+.touch .brand small,
+.touch .debug,
+.touch .bottom,
+.touch .badge,
+.touch .sound-state,
+.touch .run-status label,
+.touch #energy,
+.touch .run-status > span:last-child,
+.touch .powerbar kbd,
+.touch .sixbar kbd {
+  display: none;
+}
+.touch .metrics {
+  top: calc(52px + env(safe-area-inset-top));
+  left: max(8px, env(safe-area-inset-left));
+}
+.touch .metric {
+  min-width: 0;
+  padding: 4px 7px;
+}
+.touch .metric label {
+  font-size: 8px;
+  letter-spacing: 0;
+  margin-bottom: 2px;
+}
+.touch .metric strong {
+  font-size: 16px;
+}
+.touch .run-status {
+  top: calc(96px + env(safe-area-inset-top));
+  left: max(8px, env(safe-area-inset-left));
+  gap: 4px;
+}
+.touch .run-status progress {
+  width: 100px;
+}
+.touch #boss-hud {
+  top: calc(128px + env(safe-area-inset-top));
+  width: min(70vw, 235px);
+}
+.touch #overload-hud {
+  top: calc(190px + env(safe-area-inset-top));
+  font-size: 11px;
+}
+.touch .banner {
+  top: calc(224px + env(safe-area-inset-top));
+  left: max(8px, env(safe-area-inset-left));
+  font-size: 10px;
+}
+.touch .touch-drive,
+.touch .sixbar,
+.touch .powerbar {
+  position: absolute;
+  left: max(6px, env(safe-area-inset-left));
+  right: max(6px, env(safe-area-inset-right));
+  transform: none;
+  gap: 4px;
+  pointer-events: none;
+}
+.touch .running .touch-drive {
+  display: grid;
+}
+.touch .touch-drive {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  bottom: max(6px, env(safe-area-inset-bottom));
+}
+.touch .sixbar,
+.touch .powerbar {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.touch .sixbar {
+  bottom: calc(max(6px, env(safe-area-inset-bottom)) + 100px);
+}
+.touch .powerbar {
+  bottom: calc(max(6px, env(safe-area-inset-bottom)) + 50px);
+}
+.touch .touch-drive button,
+.touch .sixbar button,
+.touch .powerbar button {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+  justify-items: center;
+  min-width: 0;
+  min-height: 46px;
+  padding: 2px;
+  text-align: center;
+  color: #eefbff;
+  background: #0b192ee8;
+  border: 1px solid #637f9a;
+  font-size: 11px;
+}
+.touch .sixbar small,
+.touch .powerbar small {
+  grid-column: 1;
+  margin: 2px 0 0;
+  font-size: 9px;
+}
+.touch .touch-drive button {
+  color: #a8fff5;
+  font-size: 13px;
+}
+.touch button.held,
+.touch .sixbar button:active,
+.touch .powerbar button:active {
+  background: #174a62;
+  border-color: #98fff4;
+}
+.touch #next {
+  bottom: calc(max(6px, env(safe-area-inset-bottom)) + 152px);
+  width: max-content;
+  max-width: 95%;
+  padding: 4px 8px;
+  font-size: 10px;
+}
+.touch .overlay {
+  overflow-y: auto;
+  padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+    max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+}
+.touch .overlay .panel {
+  width: min(100%, 430px);
+  margin: auto;
+}
+@media (orientation: landscape) {
+  .touch .touch-drive {
+    right: auto;
+    width: 150px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .touch #touch-left {
+    grid-area: 2 / 1;
+  }
+  .touch #touch-right {
+    grid-area: 2 / 2;
+  }
+  .touch #touch-boost {
+    grid-area: 1 / 2;
+  }
+  .touch #touch-brake {
+    grid-area: 1 / 1;
+  }
+  .touch #touch-jump {
+    grid-area: 2 / 3;
+  }
+  .touch .sixbar,
+  .touch .powerbar {
+    left: auto;
+    width: clamp(284px, 45vw, 336px);
+  }
+  .touch .sixbar {
+    bottom: calc(max(6px, env(safe-area-inset-bottom)) + 50px);
+  }
+  .touch .powerbar {
+    bottom: max(6px, env(safe-area-inset-bottom));
+  }
+  .touch #boss-hud {
+    top: calc(52px + env(safe-area-inset-top));
+  }
+  .touch #overload-hud {
+    top: calc(115px + env(safe-area-inset-top));
+  }
+  .touch .banner {
+    top: calc(127px + env(safe-area-inset-top));
+  }
+  .touch #next {
+    bottom: calc(max(6px, env(safe-area-inset-bottom)) + 103px);
+  }
+  .touch .panel h1 {
+    font-size: 26px;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 700px) {
+  .touch #boss-hud,
+  .touch #overload-hud {
+    left: auto;
+    right: max(8px, env(safe-area-inset-right));
+    transform: none;
+  }
+}

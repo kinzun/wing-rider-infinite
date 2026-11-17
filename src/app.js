@@ -21,8 +21,17 @@
     $('start').onclick = () => location.reload();
     return;
   }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-  renderer.setSize(innerWidth, innerHeight);
+  const touch = matchMedia('(pointer: coarse)').matches;
+  let portrait = touch && innerWidth < innerHeight;
+  document.body.classList.toggle('touch', touch);
+  function sizeRenderer() {
+    const pixelRatio = touch
+      ? Math.min(devicePixelRatio, 1.25, Math.sqrt(650000 / (innerWidth * innerHeight)))
+      : Math.min(devicePixelRatio, 1.5);
+    renderer.setPixelRatio(pixelRatio);
+    renderer.setSize(innerWidth, innerHeight);
+  }
+  sizeRenderer();
   renderer.outputColorSpace = T.SRGBColorSpace;
   renderer.toneMapping = T.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
@@ -230,7 +239,7 @@
       $('sound-state').textContent = '音频不可用，可继续静音游戏';
       musicOn = false;
     }
-    $('music').textContent = musicOn ? '♫ 声音：开 · M' : '♫ 声音：关 · M';
+    $('music').textContent = (musicOn ? '♫ 声音：开' : '♫ 声音：关') + (touch ? '' : ' · M');
     $('music').setAttribute('aria-pressed', String(musicOn));
   }
   function scheduleMusic() {
@@ -278,12 +287,14 @@
     $('pause').disabled = false;
     $('pause').textContent = 'Ⅱ 暂停';
     $('hud').classList.remove('paused');
+    $('hud').classList.add('running');
     $('banner').textContent = '';
-    camera.position.set(8, 8, 12);
+    camera.position.set(portrait ? 1.2 : 8, 8, portrait ? 15 : 12);
     renderer.domElement.focus({ preventScroll: true });
   }
   function end(reason) {
     clearInput();
+    $('hud').classList.remove('running');
     $('overlay').hidden = false;
     $('pause').disabled = true;
     $('overline').textContent = 'RUN COMPLETE / 下次更远';
@@ -293,6 +304,7 @@
       `本次骑行 ${Math.floor(state.distance)} 米 · 收集 ${state.count} 环 · 擦身 ${state.near} 次 · 得分 ${Math.floor(state.distance) + state.score}`;
     $('mission').innerHTML =
       '青色光环引导安全路线，粉色移动障碍需要绕行或起跳。<br>窄桥前松开 Shift；按 S 减速，空格起跳；金色跳板会自动弹起。';
+    if (touch) $('mission').textContent = '窄桥前按住刹车，遇到障碍可点起跳。';
     $('start').textContent = '↻ 再骑一局';
     $('start').disabled = false;
     $('start').onclick = start;
@@ -306,9 +318,19 @@
     clearInput();
     $('pause').textContent = paused ? '▶ 继续' : 'Ⅱ 暂停';
     $('hud').classList.toggle('paused', paused);
-    $('next').textContent = paused ? '已暂停 · 按 P 或点击继续' : nextText();
+    $('next').textContent = paused
+      ? touch
+        ? '已暂停 · 点击继续'
+        : '已暂停 · 按 P 或点击继续'
+      : nextText();
   }
   function nextText() {
+    if (touch) {
+      if (state.falling) return '正在坠落 · 点任一飞行技能自救';
+      const side = SwarmCombat.threat(state);
+      if (side || state.missiles.some((m) => m.active)) return '来弹接近 · 横移 / 清弹';
+      return state.mode || state.pelicanTime > 0 ? '飞行中' : '长按方向转向 · 点按技能';
+    }
     const side = SwarmCombat.threat(state);
     if (side) return '⚠ ' + side + '炮弹接近 · 横移 / C 清弹';
     const threat = state.missiles.find((m) => m.active);
@@ -355,29 +377,40 @@
     $('day').textContent = ['☾ 日夜：自动', '☀ 日夜：白昼', '☾ 日夜：霓虹'][dayMode];
     renderer.domElement.focus({ preventScroll: true });
   };
-  for (let i = 0; i < 6; i++)
-    $('six' + i).onclick = () => {
-      if (state.status === 'playing') {
-        input['six' + i] = true;
-        setTimeout(() => (input['six' + i] = false), 100);
-      }
-    };
-  for (const [id, key] of [
+  for (let i = 0; i < 6; i++) controls.bind($('six' + i), 'six' + i);
+  for (const [id, key, hold] of [
     ['power1', 'tier1'],
     ['power2', 'tier2'],
     ['power3', 'tier3'],
-    ['fire-button', 'fire'],
+    ['fire-button', 'fire', true],
     ['roar-button', 'roar'],
     ['pelican-button', 'pelican'],
+    ['touch-left', 'left', true],
+    ['touch-right', 'right', true],
+    ['touch-brake', 'brake', true],
+    ['touch-boost', 'boost', true],
+    ['touch-jump', 'jump'],
   ])
-    $(id).onclick = () => {
-      if (state.status !== 'playing') return;
-      input[key] = true;
-      setTimeout(() => (input[key] = false), 100);
-      renderer.domElement.focus({ preventScroll: true });
-    };
+    controls.bind($(id), key, hold);
+  if (touch) {
+    $('description').textContent = '自动前进。600 米后母舰入场，打满姿态条可进入火力超载。';
+    $('mission').textContent =
+      '长按方向键转向，可同时冲刺或施放技能。坠落时点飞机、筋斗云或鹈鹕自救。';
+    $('focus-note').textContent = '';
+    for (const [id, label] of [
+      ['pelican-button', '鹈鹕'],
+      ['power1', '推进'],
+      ['power2', '超燃'],
+      ['power3', '筋斗云'],
+      ['fire-button', '肩炮'],
+      ['roar-button', '清弹'],
+    ])
+      $(id).querySelector('span').textContent = label;
+  }
   window.addEventListener('resize', () => {
-    renderer.setSize(innerWidth, innerHeight);
+    clearInput();
+    portrait = touch && innerWidth < innerHeight;
+    sizeRenderer();
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
   });
@@ -402,6 +435,7 @@
     lastTime = time;
     if (state.status !== 'paused') ambient += dt;
     if (state.status === 'playing') {
+      controls.sample();
       const oldOrigin = world.origin,
         events = InfiniteRoad.step(state, input, dt, world),
         shift = (world.origin - oldOrigin) * 64;
@@ -522,9 +556,9 @@
     const zoom =
       state.status === 'ready' ? 1.05 : state.pelicanTime > 0 ? 1.65 : state.mode ? 1.5 : 1;
     cameraPos.set(
-      state.x + 6.2 * zoom,
+      state.x + (portrait ? 1.2 : 6.2) * zoom,
       Math.max(-8, state.y * 0.85) + 6.8 * zoom,
-      state.z + 10.5 * zoom,
+      state.z + (portrait ? 15 : 10.5) * zoom,
     );
     if (!reduced && moving) {
       cameraPos.y += Math.sin(ambient * state.speed) * 0.035;
@@ -532,7 +566,7 @@
     }
     vfx.unshake(camera);
     camera.position.lerp(cameraPos, 1 - Math.exp(-dt * (reduced ? 15 : 5)));
-    cameraTarget.set(state.x, Math.max(-8, state.y * 0.85) + 2.2, state.z - 8);
+    cameraTarget.set(state.x, Math.max(-8, state.y * 0.85) + 2.2, state.z - (portrait ? 5 : 8));
     camera.lookAt(cameraTarget);
     vfx.shake(camera, reduced || state.status === 'paused');
     if (time - lastHud > 0.1) {

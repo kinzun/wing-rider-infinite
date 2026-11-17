@@ -695,6 +695,223 @@ button:disabled {
   box-shadow: inset 0 0 115px 26px #24dcffb0;
 }
 
+.touch-drive {
+  display: none;
+}
+.touch {
+  overscroll-behavior: none;
+}
+.touch #view,
+.touch .touch-drive button,
+.touch .powerbar button,
+.touch .sixbar button {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.touch .top {
+  margin: max(5px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) 0
+    max(8px, env(safe-area-inset-left));
+  align-items: center;
+  gap: 6px;
+}
+.touch .top-controls {
+  max-width: none;
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+.touch button.small {
+  padding: 4px 8px;
+  font-size: 10px;
+}
+.touch .brand strong {
+  font-size: 15px;
+  letter-spacing: 0;
+}
+.touch .brand small,
+.touch .debug,
+.touch .bottom,
+.touch .badge,
+.touch .sound-state,
+.touch .run-status label,
+.touch #energy,
+.touch .run-status > span:last-child,
+.touch .powerbar kbd,
+.touch .sixbar kbd {
+  display: none;
+}
+.touch .metrics {
+  top: calc(52px + env(safe-area-inset-top));
+  left: max(8px, env(safe-area-inset-left));
+}
+.touch .metric {
+  min-width: 0;
+  padding: 4px 7px;
+}
+.touch .metric label {
+  font-size: 8px;
+  letter-spacing: 0;
+  margin-bottom: 2px;
+}
+.touch .metric strong {
+  font-size: 16px;
+}
+.touch .run-status {
+  top: calc(96px + env(safe-area-inset-top));
+  left: max(8px, env(safe-area-inset-left));
+  gap: 4px;
+}
+.touch .run-status progress {
+  width: 100px;
+}
+.touch #boss-hud {
+  top: calc(128px + env(safe-area-inset-top));
+  width: min(70vw, 235px);
+}
+.touch #overload-hud {
+  top: calc(190px + env(safe-area-inset-top));
+  font-size: 11px;
+}
+.touch .banner {
+  top: calc(224px + env(safe-area-inset-top));
+  left: max(8px, env(safe-area-inset-left));
+  font-size: 10px;
+}
+.touch .touch-drive,
+.touch .sixbar,
+.touch .powerbar {
+  position: absolute;
+  left: max(6px, env(safe-area-inset-left));
+  right: max(6px, env(safe-area-inset-right));
+  transform: none;
+  gap: 4px;
+  pointer-events: none;
+}
+.touch .running .touch-drive {
+  display: grid;
+}
+.touch .touch-drive {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  bottom: max(6px, env(safe-area-inset-bottom));
+}
+.touch .sixbar,
+.touch .powerbar {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.touch .sixbar {
+  bottom: calc(max(6px, env(safe-area-inset-bottom)) + 100px);
+}
+.touch .powerbar {
+  bottom: calc(max(6px, env(safe-area-inset-bottom)) + 50px);
+}
+.touch .touch-drive button,
+.touch .sixbar button,
+.touch .powerbar button {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+  justify-items: center;
+  min-width: 0;
+  min-height: 46px;
+  padding: 2px;
+  text-align: center;
+  color: #eefbff;
+  background: #0b192ee8;
+  border: 1px solid #637f9a;
+  font-size: 11px;
+}
+.touch .sixbar small,
+.touch .powerbar small {
+  grid-column: 1;
+  margin: 2px 0 0;
+  font-size: 9px;
+}
+.touch .touch-drive button {
+  color: #a8fff5;
+  font-size: 13px;
+}
+.touch button.held,
+.touch .sixbar button:active,
+.touch .powerbar button:active {
+  background: #174a62;
+  border-color: #98fff4;
+}
+.touch #next {
+  bottom: calc(max(6px, env(safe-area-inset-bottom)) + 152px);
+  width: max-content;
+  max-width: 95%;
+  padding: 4px 8px;
+  font-size: 10px;
+}
+.touch .overlay {
+  overflow-y: auto;
+  padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+    max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+}
+.touch .overlay .panel {
+  width: min(100%, 430px);
+  margin: auto;
+}
+@media (orientation: landscape) {
+  .touch .touch-drive {
+    right: auto;
+    width: 150px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .touch #touch-left {
+    grid-area: 2 / 1;
+  }
+  .touch #touch-right {
+    grid-area: 2 / 2;
+  }
+  .touch #touch-boost {
+    grid-area: 1 / 2;
+  }
+  .touch #touch-brake {
+    grid-area: 1 / 1;
+  }
+  .touch #touch-jump {
+    grid-area: 2 / 3;
+  }
+  .touch .sixbar,
+  .touch .powerbar {
+    left: auto;
+    width: clamp(284px, 45vw, 336px);
+  }
+  .touch .sixbar {
+    bottom: calc(max(6px, env(safe-area-inset-bottom)) + 50px);
+  }
+  .touch .powerbar {
+    bottom: max(6px, env(safe-area-inset-bottom));
+  }
+  .touch #boss-hud {
+    top: calc(52px + env(safe-area-inset-top));
+  }
+  .touch #overload-hud {
+    top: calc(115px + env(safe-area-inset-top));
+  }
+  .touch .banner {
+    top: calc(127px + env(safe-area-inset-top));
+  }
+  .touch #next {
+    bottom: calc(max(6px, env(safe-area-inset-bottom)) + 103px);
+  }
+  .touch .panel h1 {
+    font-size: 26px;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 700px) {
+  .touch #boss-hud,
+  .touch #overload-hud {
+    left: auto;
+    right: max(8px, env(safe-area-inset-right));
+    transform: none;
+  }
+}
+
     </style>
     <!-- Three.js r180, MIT license. Copyright 2010-2025 Three.js authors.
 The MIT License
@@ -766,6 +983,13 @@ THE SOFTWARE.
       </div>
       <div id="next">没有终点。保持在路面上。</div>
       <div class="sound-state" id="sound-state">原声由振荡器实时合成</div>
+      <div class="touch-drive" aria-label="触控骑行">
+        <button id="touch-left" aria-label="左转">◀</button>
+        <button id="touch-right" aria-label="右转">▶</button>
+        <button id="touch-brake">刹车</button>
+        <button id="touch-boost">冲刺</button>
+        <button id="touch-jump">起跳</button>
+      </div>
       <div class="sixbar">
         <button id="six0"><kbd>Q</kbd><span>冰刺</span><small>就绪</small></button
         ><button id="six1"><kbd>E</kbd><span>雷暴</span><small>就绪</small></button
@@ -99012,8 +99236,70 @@ function createControls({ getState, start, pause, toggleSound }) {
     KeyV: 'six4',
     KeyX: 'six5',
   };
+  const actions = [...new Set(Object.values(keyMap)), 'brake'];
+  const keys = new Set();
+  const pointers = new Map();
+  const freshFire = new Set();
+  const taps = new Map();
+  const pulse = new Set();
+  function sample() {
+    for (const action of actions) input[action] = false;
+    for (const code of keys) input[keyMap[code]] = true;
+    for (const action of pointers.values()) input[action] = true;
+    freshFire.clear();
+    for (const [action, count] of taps) {
+      if (pulse.delete(action)) continue;
+      input[action] = true;
+      pulse.add(action);
+      if (count === 1) taps.delete(action);
+      else taps.set(action, count - 1);
+    }
+    for (const action of pulse) if (!taps.has(action) && !input[action]) pulse.delete(action);
+  }
+  function bind(button, action, hold = false) {
+    button.addEventListener('click', (e) => {
+      if (e.detail === 0 && getState().status === 'playing' && !button.disabled)
+        taps.set(action, Math.min(4, (taps.get(action) || 0) + 1));
+    });
+    button.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0 || getState().status !== 'playing' || button.disabled) return;
+      e.preventDefault();
+      if (!hold) {
+        taps.set(action, Math.min(4, (taps.get(action) || 0) + 1));
+        return;
+      }
+      pointers.set(e.pointerId, action);
+      if (action === 'fire') freshFire.add(e.pointerId);
+      button.setPointerCapture(e.pointerId);
+      button.classList.add('held');
+    });
+    function release(e) {
+      if (!pointers.delete(e.pointerId)) return;
+      if (freshFire.delete(e.pointerId) && e.type === 'pointerup') taps.set('fire', 1);
+      if (![...pointers.values()].includes(action)) button.classList.remove('held');
+    }
+    for (const event of ['pointerup', 'pointercancel', 'lostpointercapture'])
+      button.addEventListener(event, release);
+    button.addEventListener('pointermove', (e) => {
+      if (!pointers.has(e.pointerId)) return;
+      const r = button.getBoundingClientRect();
+      if (
+        e.clientX < r.left - 12 ||
+        e.clientX > r.right + 12 ||
+        e.clientY < r.top - 12 ||
+        e.clientY > r.bottom + 12
+      )
+        release(e);
+    });
+  }
   function clearInput() {
-    Object.keys(input).forEach((k) => (input[k] = false));
+    keys.clear();
+    pointers.clear();
+    freshFire.clear();
+    taps.clear();
+    pulse.clear();
+    document.querySelectorAll('.held').forEach((button) => button.classList.remove('held'));
+    for (const action of actions) input[action] = false;
   }
   window.addEventListener('keydown', (e) => {
     if (
@@ -99023,7 +99309,7 @@ function createControls({ getState, start, pause, toggleSound }) {
       return;
     if (keyMap[e.code]) {
       e.preventDefault();
-      if (getState().status === 'playing') input[keyMap[e.code]] = true;
+      if (getState().status === 'playing') keys.add(e.code);
     }
     if (!e.repeat) {
       if (e.code === 'KeyM') toggleSound();
@@ -99036,7 +99322,7 @@ function createControls({ getState, start, pause, toggleSound }) {
 
   window.addEventListener('keyup', (e) => {
     if (keyMap[e.code]) {
-      input[keyMap[e.code]] = false;
+      keys.delete(e.code);
       e.preventDefault();
     }
   });
@@ -99045,10 +99331,12 @@ function createControls({ getState, start, pause, toggleSound }) {
     if (getState().status === 'playing') pause();
   });
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden && getState().status === 'playing') pause();
+    if (!document.hidden) return;
+    clearInput();
+    if (getState().status === 'playing') pause();
   });
 
-  return { input, clear: clearInput };
+  return { input, clear: clearInput, bind, sample };
 }
 
 </script>
@@ -99124,8 +99412,17 @@ function updateHud($, state, ambient, noticeUntil, nextText) {
     $('start').onclick = () => location.reload();
     return;
   }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-  renderer.setSize(innerWidth, innerHeight);
+  const touch = matchMedia('(pointer: coarse)').matches;
+  let portrait = touch && innerWidth < innerHeight;
+  document.body.classList.toggle('touch', touch);
+  function sizeRenderer() {
+    const pixelRatio = touch
+      ? Math.min(devicePixelRatio, 1.25, Math.sqrt(650000 / (innerWidth * innerHeight)))
+      : Math.min(devicePixelRatio, 1.5);
+    renderer.setPixelRatio(pixelRatio);
+    renderer.setSize(innerWidth, innerHeight);
+  }
+  sizeRenderer();
   renderer.outputColorSpace = T.SRGBColorSpace;
   renderer.toneMapping = T.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
@@ -99333,7 +99630,7 @@ function updateHud($, state, ambient, noticeUntil, nextText) {
       $('sound-state').textContent = '音频不可用，可继续静音游戏';
       musicOn = false;
     }
-    $('music').textContent = musicOn ? '♫ 声音：开 · M' : '♫ 声音：关 · M';
+    $('music').textContent = (musicOn ? '♫ 声音：开' : '♫ 声音：关') + (touch ? '' : ' · M');
     $('music').setAttribute('aria-pressed', String(musicOn));
   }
   function scheduleMusic() {
@@ -99381,12 +99678,14 @@ function updateHud($, state, ambient, noticeUntil, nextText) {
     $('pause').disabled = false;
     $('pause').textContent = 'Ⅱ 暂停';
     $('hud').classList.remove('paused');
+    $('hud').classList.add('running');
     $('banner').textContent = '';
-    camera.position.set(8, 8, 12);
+    camera.position.set(portrait ? 1.2 : 8, 8, portrait ? 15 : 12);
     renderer.domElement.focus({ preventScroll: true });
   }
   function end(reason) {
     clearInput();
+    $('hud').classList.remove('running');
     $('overlay').hidden = false;
     $('pause').disabled = true;
     $('overline').textContent = 'RUN COMPLETE / 下次更远';
@@ -99396,6 +99695,7 @@ function updateHud($, state, ambient, noticeUntil, nextText) {
       `本次骑行 ${Math.floor(state.distance)} 米 · 收集 ${state.count} 环 · 擦身 ${state.near} 次 · 得分 ${Math.floor(state.distance) + state.score}`;
     $('mission').innerHTML =
       '青色光环引导安全路线，粉色移动障碍需要绕行或起跳。<br>窄桥前松开 Shift；按 S 减速，空格起跳；金色跳板会自动弹起。';
+    if (touch) $('mission').textContent = '窄桥前按住刹车，遇到障碍可点起跳。';
     $('start').textContent = '↻ 再骑一局';
     $('start').disabled = false;
     $('start').onclick = start;
@@ -99409,9 +99709,19 @@ function updateHud($, state, ambient, noticeUntil, nextText) {
     clearInput();
     $('pause').textContent = paused ? '▶ 继续' : 'Ⅱ 暂停';
     $('hud').classList.toggle('paused', paused);
-    $('next').textContent = paused ? '已暂停 · 按 P 或点击继续' : nextText();
+    $('next').textContent = paused
+      ? touch
+        ? '已暂停 · 点击继续'
+        : '已暂停 · 按 P 或点击继续'
+      : nextText();
   }
   function nextText() {
+    if (touch) {
+      if (state.falling) return '正在坠落 · 点任一飞行技能自救';
+      const side = SwarmCombat.threat(state);
+      if (side || state.missiles.some((m) => m.active)) return '来弹接近 · 横移 / 清弹';
+      return state.mode || state.pelicanTime > 0 ? '飞行中' : '长按方向转向 · 点按技能';
+    }
     const side = SwarmCombat.threat(state);
     if (side) return '⚠ ' + side + '炮弹接近 · 横移 / C 清弹';
     const threat = state.missiles.find((m) => m.active);
@@ -99458,29 +99768,40 @@ function updateHud($, state, ambient, noticeUntil, nextText) {
     $('day').textContent = ['☾ 日夜：自动', '☀ 日夜：白昼', '☾ 日夜：霓虹'][dayMode];
     renderer.domElement.focus({ preventScroll: true });
   };
-  for (let i = 0; i < 6; i++)
-    $('six' + i).onclick = () => {
-      if (state.status === 'playing') {
-        input['six' + i] = true;
-        setTimeout(() => (input['six' + i] = false), 100);
-      }
-    };
-  for (const [id, key] of [
+  for (let i = 0; i < 6; i++) controls.bind($('six' + i), 'six' + i);
+  for (const [id, key, hold] of [
     ['power1', 'tier1'],
     ['power2', 'tier2'],
     ['power3', 'tier3'],
-    ['fire-button', 'fire'],
+    ['fire-button', 'fire', true],
     ['roar-button', 'roar'],
     ['pelican-button', 'pelican'],
+    ['touch-left', 'left', true],
+    ['touch-right', 'right', true],
+    ['touch-brake', 'brake', true],
+    ['touch-boost', 'boost', true],
+    ['touch-jump', 'jump'],
   ])
-    $(id).onclick = () => {
-      if (state.status !== 'playing') return;
-      input[key] = true;
-      setTimeout(() => (input[key] = false), 100);
-      renderer.domElement.focus({ preventScroll: true });
-    };
+    controls.bind($(id), key, hold);
+  if (touch) {
+    $('description').textContent = '自动前进。600 米后母舰入场，打满姿态条可进入火力超载。';
+    $('mission').textContent =
+      '长按方向键转向，可同时冲刺或施放技能。坠落时点飞机、筋斗云或鹈鹕自救。';
+    $('focus-note').textContent = '';
+    for (const [id, label] of [
+      ['pelican-button', '鹈鹕'],
+      ['power1', '推进'],
+      ['power2', '超燃'],
+      ['power3', '筋斗云'],
+      ['fire-button', '肩炮'],
+      ['roar-button', '清弹'],
+    ])
+      $(id).querySelector('span').textContent = label;
+  }
   window.addEventListener('resize', () => {
-    renderer.setSize(innerWidth, innerHeight);
+    clearInput();
+    portrait = touch && innerWidth < innerHeight;
+    sizeRenderer();
     camera.aspect = innerWidth / innerHeight;
     camera.updateProjectionMatrix();
   });
@@ -99505,6 +99826,7 @@ function updateHud($, state, ambient, noticeUntil, nextText) {
     lastTime = time;
     if (state.status !== 'paused') ambient += dt;
     if (state.status === 'playing') {
+      controls.sample();
       const oldOrigin = world.origin,
         events = InfiniteRoad.step(state, input, dt, world),
         shift = (world.origin - oldOrigin) * 64;
@@ -99625,9 +99947,9 @@ function updateHud($, state, ambient, noticeUntil, nextText) {
     const zoom =
       state.status === 'ready' ? 1.05 : state.pelicanTime > 0 ? 1.65 : state.mode ? 1.5 : 1;
     cameraPos.set(
-      state.x + 6.2 * zoom,
+      state.x + (portrait ? 1.2 : 6.2) * zoom,
       Math.max(-8, state.y * 0.85) + 6.8 * zoom,
-      state.z + 10.5 * zoom,
+      state.z + (portrait ? 15 : 10.5) * zoom,
     );
     if (!reduced && moving) {
       cameraPos.y += Math.sin(ambient * state.speed) * 0.035;
@@ -99635,7 +99957,7 @@ function updateHud($, state, ambient, noticeUntil, nextText) {
     }
     vfx.unshake(camera);
     camera.position.lerp(cameraPos, 1 - Math.exp(-dt * (reduced ? 15 : 5)));
-    cameraTarget.set(state.x, Math.max(-8, state.y * 0.85) + 2.2, state.z - 8);
+    cameraTarget.set(state.x, Math.max(-8, state.y * 0.85) + 2.2, state.z - (portrait ? 5 : 8));
     camera.lookAt(cameraTarget);
     vfx.shake(camera, reduced || state.status === 'paused');
     if (time - lastHud > 0.1) {
