@@ -1,0 +1,27 @@
+{
+  "version": "吞天风暴",
+  "tests": "npm test PASS; shader console no errors; keyboard Q + tier2 + roar; 1280x720 layout and reduced motion",
+  "resourceStress": {
+    "iterations": 1000,
+    "before": {
+      "sceneObjects": 485,
+      "geometries": 78,
+      "textures": 2
+    },
+    "after": {
+      "sceneObjects": 485,
+      "geometries": 78,
+      "textures": 2
+    }
+  },
+  "shortFrameSample": {
+    "frames": 160,
+    "viewport": "1440x900",
+    "medianMs": 13.3,
+    "p95Ms": 14
+  },
+  "limitations": [
+    "single browser short sample",
+    "no multi-hour soak or cross-GPU guarantee"
+  ]
+}

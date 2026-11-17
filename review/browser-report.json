@@ -1,0 +1,81 @@
+{
+  "acceleratedChunks": 10000,
+  "samples": [
+    {
+      "chunk": 0,
+      "geometries": 67,
+      "textures": 2,
+      "objects": 451,
+      "slots": 12,
+      "cache": 12,
+      "missiles": 8,
+      "shots": 8
+    },
+    {
+      "chunk": 2000,
+      "geometries": 67,
+      "textures": 2,
+      "objects": 451,
+      "slots": 12,
+      "cache": 12,
+      "missiles": 8,
+      "shots": 8
+    },
+    {
+      "chunk": 4000,
+      "geometries": 67,
+      "textures": 2,
+      "objects": 451,
+      "slots": 12,
+      "cache": 12,
+      "missiles": 8,
+      "shots": 8
+    },
+    {
+      "chunk": 6000,
+      "geometries": 67,
+      "textures": 2,
+      "objects": 451,
+      "slots": 12,
+      "cache": 12,
+      "missiles": 8,
+      "shots": 8
+    },
+    {
+      "chunk": 8000,
+      "geometries": 67,
+      "textures": 2,
+      "objects": 451,
+      "slots": 12,
+      "cache": 12,
+      "missiles": 8,
+      "shots": 8
+    },
+    {
+      "chunk": 10000,
+      "geometries": 67,
+      "textures": 2,
+      "objects": 451,
+      "slots": 12,
+      "cache": 12,
+      "missiles": 8,
+      "shots": 8
+    }
+  ],
+  "warmup": "three powers, projectile fire, roar shield activated before sampling",
+  "verified": [
+    "keyboard power chain",
+    "bear missile interception",
+    "roar clears actual active enemy",
+    "music AudioContext running",
+    "reduced motion effect suppressed",
+    "1440x900 and 1280x720",
+    "WebGL context-loss panel",
+    "no normal-play console errors"
+  ],
+  "limits": [
+    "accelerated transitions, not multi-hour realtime test",
+    "GPU counts not byte measurements",
+    "no precise heap or other hardware coverage"
+  ]
+}

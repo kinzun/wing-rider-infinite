@@ -1,0 +1,30 @@
+{
+  "version": "蜂群母舰战",
+  "tests": [
+    "npm test PASS",
+    "real keyboard Q + cloud + held F defeated boss and drones",
+    "no shader errors",
+    "1000 warm audit iterations stable"
+  ],
+  "poolBefore": {
+    "objects": 596,
+    "geometries": 79,
+    "textures": 2
+  },
+  "poolAfter": {
+    "objects": 596,
+    "geometries": 79,
+    "textures": 2
+  },
+  "frameSample": {
+    "viewport": "1440x900",
+    "frames": 300,
+    "medianMs": 13.3,
+    "p95Ms": 14.3
+  },
+  "limits": [
+    "short single-machine measurement",
+    "audit seeded boss encounter",
+    "no multi-hour or cross-GPU benchmark"
+  ]
+}

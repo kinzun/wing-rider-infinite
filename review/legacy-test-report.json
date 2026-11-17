@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "batches": 300,
+  "narrow": 2055,
+  "turn": 1952,
+  "hazard": 471,
+  "fallbacks": 0,
+  "maxSolveMs": 1.83,
+  "streamedChunks": 100000,
+  "streamedKm": 6400,
+  "pool": {
+    "slots": 12,
+    "cachedTiles": 12,
+    "fallbacks": 0,
+    "origin": 99999
+  },
+  "controllerMeters": 10000,
+  "rings": 156,
+  "seconds": 1.58
+}

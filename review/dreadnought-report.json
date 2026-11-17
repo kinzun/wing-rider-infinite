@@ -1,0 +1,33 @@
+{
+  "version": "重装母舰 GPU 粒子",
+  "healthMax": 100,
+  "lifeSteal": 0.25,
+  "gpuCapacity": 2560,
+  "source": "reference-particles.js adapted from reference src/particles/ParticleSystem.js",
+  "checks": [
+    "npm test PASS",
+    "shader console clean",
+    "actual battle entered enraged boss phase",
+    "1000 warm audit cycles stable"
+  ],
+  "resourcesBefore": {
+    "objects": 743,
+    "geometries": 87,
+    "textures": 2
+  },
+  "resourcesAfter": {
+    "objects": 743,
+    "geometries": 87,
+    "textures": 2
+  },
+  "frameSample": {
+    "frames": 240,
+    "viewport": "1440x900",
+    "medianMs": 13.3,
+    "p95Ms": 14.2
+  },
+  "limits": [
+    "single machine short sample",
+    "no multi-hour soak or exact GPU byte measurement"
+  ]
+}

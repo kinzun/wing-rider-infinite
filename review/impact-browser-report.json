@@ -1,0 +1,105 @@
+{
+  "median": 16.59999990463257,
+  "p95": 17.899999856948853,
+  "snapshot": {
+    "x": -0.00038263112274558234,
+    "z": -36.28695955431658,
+    "vx": 0,
+    "distance": 804.2869595543166,
+    "y": 1.7999999729467064,
+    "vy": 0,
+    "jumps": 0,
+    "combo": 0,
+    "health": 100,
+    "energy": 100,
+    "speed": 74.92344103560669,
+    "rings": 2,
+    "falling": false,
+    "fps": 60,
+    "music": true,
+    "audio": {
+      "enabled": true,
+      "state": "running",
+      "voices": 0,
+      "peak": 15,
+      "limit": 32,
+      "buffers": 20,
+      "played": 76
+    },
+    "audioState": "running",
+    "dayMode": 2,
+    "mode": 1,
+    "enemies": 1,
+    "bossHp": 36,
+    "modeTime": 0.8168000000000011,
+    "pelicanTime": 0,
+    "pelicanCooldown": 0,
+    "cooldowns": [
+      5.633499999999987,
+      0,
+      0
+    ],
+    "ammo": 8,
+    "shield": 0,
+    "kills": 379,
+    "enemyActive": 3,
+    "shotActive": 0,
+    "missilePool": 8,
+    "shotPool": 8,
+    "six": {
+      "active": 1,
+      "objects": 72,
+      "burstSlots": 18,
+      "decalSlots": 24,
+      "fissureSlots": 2,
+      "systems": 23,
+      "capacity": 11776
+    },
+    "swarm": {
+      "capacity": 512,
+      "alive": 145,
+      "bulletCapacity": 384,
+      "bullets": 0,
+      "fired": 382,
+      "hits": 0,
+      "killed": 367,
+      "attack": 0,
+      "attackTime": 0
+    },
+    "gpuParticles": 1797,
+    "gpuCapacity": 2560,
+    "drawCalls": 393,
+    "stream": {
+      "slots": 12,
+      "cachedTiles": 12,
+      "fallbacks": 0,
+      "origin": 12
+    },
+    "geometries": 119,
+    "textures": 2,
+    "sceneObjects": 750
+  },
+  "warm": {
+    "before": {
+      "active": 1,
+      "objects": 70,
+      "burstSlots": 18,
+      "decalSlots": 24,
+      "fissureSlots": 2,
+      "systems": 23,
+      "capacity": 11776
+    },
+    "after": {
+      "active": 1,
+      "objects": 70,
+      "burstSlots": 18,
+      "decalSlots": 24,
+      "fissureSlots": 2,
+      "systems": 23,
+      "capacity": 11776
+    },
+    "geometries": 129,
+    "textures": 2
+  },
+  "errors": []
+}

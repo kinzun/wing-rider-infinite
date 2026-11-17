@@ -1,0 +1,22 @@
+[
+  "vendor/three.js",
+  "src/simulation/road.cjs",
+  "src/simulation/battle.cjs",
+  "src/simulation/swarm.cjs",
+  "src/simulation/player.cjs",
+  "src/effects/reference-particles.js",
+  "src/effects/camera-shake.js",
+  "src/effects/vfx.js",
+  "build/six-bundle.js",
+  "src/effects/six-host.js",
+  "src/render/swarm.js",
+  "src/render/fleet.js",
+  "src/render/primitives.js",
+  "src/render/environment.js",
+  "src/render/rider.js",
+  "src/render/road.js",
+  "src/audio/audio.js",
+  "src/ui/input.js",
+  "src/ui/hud.js",
+  "src/app.js"
+]

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="theme-color" content="#070d1d" />
+    <title>云上奇行 / CHAOS STACK — WFC 无限骑行</title>
+    <style>
+      /* INLINE_STYLES */
+    </style>
+    <!-- Three.js r180, MIT license. Copyright 2010-2025 Three.js authors.
+The MIT License
+
+Copyright © 2010-2025 three.js authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+-->
+  </head>
+  <body>
+    <div id="view" aria-label="三维机翼骑行场景"></div>
+    <div id="cloud-dive" aria-hidden="true"></div>
+    <div id="impact-flash" aria-hidden="true"></div>
+    <div id="rush-vignette" aria-hidden="true"></div>
+    <div class="hud" id="hud">
+      <div class="top">
+        <div class="brand">
+          <span class="star">✦</span>
+          <div><strong>云上奇行</strong><small>CHAOS STACK / WFC</small></div>
+        </div>
+        <div class="top-controls">
+          <button class="small" id="music" aria-pressed="false">♫ 声音：开始后启用 · M</button
+          ><button class="small" id="day">☾ 日夜：霓虹</button
+          ><button class="small" id="pause" disabled>Ⅱ 暂停</button>
+        </div>
+      </div>
+      <div id="boss-hud" hidden>
+        <span id="boss-phase">母舰 · 装甲核心</span
+        ><progress id="boss-life" max="900" value="900" aria-label="母舰耐久"></progress>
+        <label id="boss-impact-label" for="boss-impact">姿态压力 · 0%</label
+        ><progress id="boss-impact" max="120" value="0" aria-label="母舰姿态压力"></progress>
+      </div>
+      <div id="overload-hud" hidden>火力超载 · <strong id="overload-time"></strong> · 推力增强</div>
+      <div class="metrics">
+        <div class="metric">
+          <label>光环 / RINGS</label><strong id="rings">00</strong><span> / ∞</span>
+        </div>
+        <div class="metric">
+          <label>里程 / METERS</label><strong id="timer">0</strong><span> m</span>
+        </div>
+        <div class="metric">
+          <label>骑行 / SPEED</label><strong id="speed">0</strong><span> km/h</span>
+        </div>
+      </div>
+      <div id="banner" class="banner" role="status" aria-live="polite"></div>
+      <div class="badge">PROCEDURAL SKYWAY · NO FINISH LINE</div>
+      <div class="run-status">
+        <span id="health">耐久 100 / 100</span
+        ><progress id="health-bar" value="100" max="100" aria-label="耐久"></progress
+        ><label for="energy">冲刺能量</label><progress id="energy" value="100" max="100"></progress
+        ><span>得分 <b id="score">0</b></span>
+      </div>
+      <div id="next">没有终点。保持在路面上。</div>
+      <div class="sound-state" id="sound-state">原声由振荡器实时合成</div>
+      <div class="sixbar">
+        <button id="six0"><kbd>Q</kbd><span>冰刺</span><small>就绪</small></button
+        ><button id="six1"><kbd>E</kbd><span>雷暴</span><small>就绪</small></button
+        ><button id="six2"><kbd>R</kbd><span>陨石</span><small>就绪</small></button
+        ><button id="six3"><kbd>F</kbd><span>光束</span><small>就绪</small></button
+        ><button id="six4"><kbd>V</kbd><span>束缚场</span><small>就绪</small></button
+        ><button id="six5"><kbd>X</kbd><span>冰川</span><small>就绪</small></button>
+      </div>
+      <div class="powerbar" aria-label="角色技能">
+        <button id="pelican-button">
+          <kbd>4</kbd><span>鹈鹕 · 吞天嗝</span><small>就绪</small>
+        </button>
+        <button id="power1"><kbd>1</kbd><span>飞机 · 一级推进</span><small>就绪</small></button>
+        <button id="power2"><kbd>2</kbd><span>飞机 · 二级超燃</span><small>就绪</small></button>
+        <button id="power3"><kbd>3</kbd><span>悟空 · 筋斗云</span><small>就绪</small></button>
+        <button id="fire-button"><kbd>Z</kbd><span>北极熊 · 肩炮</span><small>8/8</small></button>
+        <button id="roar-button">
+          <kbd>C</kbd><span>北极熊 · 清弹吼</span><small>就绪</small>
+        </button>
+      </div>
+      <div class="bottom">
+        <div class="keyboard-help">
+          <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 骑行　 <kbd>SHIFT</kbd> 冲刺　
+          <kbd>SPACE</kbd> 起跳　 <kbd>P</kbd> 暂停　 <kbd>⌫</kbd> 重试
+        </div>
+        <div class="debug" id="perf">PROCEDURAL WORLD / THREE.JS</div>
+      </div>
+    </div>
+    <div class="overlay" id="overlay">
+      <section class="panel" aria-labelledby="panel-title">
+        <div class="overline" id="overline">AIRPLANE × POLAR BEAR × MONKEY KING</div>
+        <h1 id="panel-title">CHAOS<br /><span>STACK.</span></h1>
+        <div class="subtitle" id="subtitle">1024 架围攻 · 弹幕墙 · 横扫主炮</div>
+        <p id="description">
+          无人机蜂群正在封锁赛道，600 米后空中母舰入场。Q E R F V X 六系大招覆盖敌阵；1/2 飞机、3
+          筋斗云、4 鹈鹕都能在坠落途中救场。母舰半血后狂暴齐射，击毁恢复耐久。
+        </p>
+        <div class="mission" id="mission">
+          <b>01</b>　自动前进 · A D 转向 · W 加速<br /><b>02</b>　1 飞机推进 · 2 超燃 · 3 筋斗云<br /><b
+            >03</b
+          >　4 鹈鹕 · C 熊吼 · Z 肩炮 · 空格跳
+        </div>
+        <button class="start" id="start" disabled>正在生成世界…</button
+        ><label class="motion-label"><input type="checkbox" id="motion" /> 减少镜头晃动</label>
+        <footer id="hint">
+          追逐更远的里程。角色、海水与原声均由程序生成。<span id="focus-note"
+            >Enter 开始 · Z 肩炮 · M 静音 · P 暂停 · Backspace 重试。</span
+          >
+        </footer>
+      </section>
+    </div>
+    <noscript>需要启用 JavaScript 才能运行此游戏。</noscript>
+  </body>
+</html>

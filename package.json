@@ -1,0 +1,10 @@
+{
+  "name": "wing-rider-infinite",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "python3 scripts/build.py",
+    "test": "npm run build && node scripts/test.cjs",
+    "serve": "python3 -m http.server 8091 --bind 10.88.104.71"
+  }
+}

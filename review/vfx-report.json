@@ -1,0 +1,32 @@
+{
+  "version": "VFX upgrade",
+  "reference": "LinearAbiltyCastingThreeJS",
+  "tests": [
+    "npm test PASS",
+    "1000 VFX triggers retain object/buffer identities",
+    "browser 1000 chunk/ability iterations after full warmup",
+    "actual keyboard tier2/cloud/roar",
+    "no console errors/warnings"
+  ],
+  "before": {
+    "sceneObjects": 475,
+    "geometries": 77,
+    "textures": 2
+  },
+  "after": {
+    "sceneObjects": 475,
+    "geometries": 77,
+    "textures": 2
+  },
+  "limitations": [
+    "No multi-hour run",
+    "No cross-GPU benchmark",
+    "Counts are not exact memory bytes"
+  ],
+  "screenshots": [
+    "planeVfx.png",
+    "cloudVfx.png",
+    "roarVfx.png",
+    "blastVfx.png"
+  ]
+}

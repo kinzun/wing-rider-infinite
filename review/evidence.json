@@ -1,0 +1,58 @@
+{
+  "contract": "电脑端 CHAOS STACK：飞机一级/二级、悟空筋斗云、北极熊肩炮/清弹吼。固定模型池，保留暗黑霓虹风格与减少晃动；技能按钮可见并显示冷却。",
+  "targetViewports": [
+    "1440x900",
+    "1280x720"
+  ],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "1/2/3、F、E、P键实际测试，技能按钮有文字与冷却。1280x720减少晃动选中且冲刺边缘opacity为0；未实测屏幕阅读器。"
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "1440x900游戏与1280x720起始面板实际渲染，文字和按钮完整，未横向溢出。用户仅要求电脑端。"
+  },
+  "contentStates": {
+    "loading": {
+      "status": "not-applicable",
+      "reason": "单HTML同步程序生成，无异步素材请求。"
+    },
+    "empty": {
+      "status": "pass",
+      "evidence": "初始里程0、环0、耐久3、能量100及说明可见。"
+    },
+    "error": {
+      "status": "pass",
+      "evidence": "当前版本实际触发WEBGL_lose_context，显示画面连接中断及刷新重试。"
+    },
+    "partial": {
+      "status": "pass",
+      "evidence": "三段连续启动实测至1265米、20环、5击破、耐久3；最新齐射机制后再测至877米、13环、4击破、耐久3。"
+    },
+    "success": {
+      "status": "pass",
+      "evidence": "自动测试确认三段动力到期正常辅助落地、肩炮拦截、清弹与无敌；浏览器清弹前1敌弹，清弹后0敌弹且护盾生效。"
+    },
+    "permission": {
+      "status": "not-applicable",
+      "reason": "不请求权限；用户手动开启音乐，AudioContext已验证running。"
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "1440x900",
+      "artifact": "desktop.png",
+      "observation": "二级飞机四发喷焰与角色组可见，技能栏完整。"
+    },
+    {
+      "viewport": "1280x720",
+      "artifact": "compact.png",
+      "observation": "筋斗云与技能栏完整，减少晃动生效，无水平溢出。"
+    },
+    {
+      "viewport": "1440x900",
+      "artifact": "cloud.png",
+      "observation": "筋斗云与北极熊肩炮、锁定准星可见。"
+    }
+  ]
+}
