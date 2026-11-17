@@ -2,6 +2,8 @@
 
 桌面端 Three.js 无限骑行与蜂群战斗游戏。直接打开根目录 `index.html`，不需要服务器或网络素材。
 
+在线游玩：[GitHub Pages](https://kinzun.github.io/wing-rider-infinite/)
+
 ## 开发入口
 
 ```sh
